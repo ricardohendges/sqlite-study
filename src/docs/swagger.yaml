@@ -1,0 +1,390 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "MOVIES",
+    "description": "Documentação da API MOVIES"
+  },
+  "host": "",
+  "basePath": "",
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/award": {
+      "get": {
+        "tags": [
+          "AWARD"
+        ],
+        "summary": "Obter o produtor com maior intervalo entre dois prêmios consecutivos, e o que obteve dois prêmios mais rápido",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Sucesso!",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "min": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "producer": {
+                        "type": "string",
+                        "example": "Producer 1"
+                      },
+                      "interval": {
+                        "type": "number",
+                        "example": 1
+                      },
+                      "previousWin": {
+                        "type": "number",
+                        "example": 2008
+                      },
+                      "followingWin": {
+                        "type": "number",
+                        "example": 2009
+                      }
+                    }
+                  }
+                },
+                "max": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "producer": {
+                        "type": "string",
+                        "example": "Producer 1"
+                      },
+                      "interval": {
+                        "type": "number",
+                        "example": 99
+                      },
+                      "previousWin": {
+                        "type": "number",
+                        "example": 1900
+                      },
+                      "followingWin": {
+                        "type": "number",
+                        "example": 1999
+                      }
+                    }
+                  }
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Problema no servidor."
+          }
+        }
+      }
+    },
+    "/movie": {
+      "get": {
+        "tags": [
+          "MOVIES"
+        ],
+        "summary": "List movies by params.",
+        "description": "",
+        "parameters": [
+          {
+            "name": "limit",
+            "description": "limit",
+            "in": "query",
+            "type": "int"
+          },
+          {
+            "name": "offset",
+            "description": "offset",
+            "in": "query",
+            "type": "int"
+          },
+          {
+            "name": "year",
+            "description": "year",
+            "in": "query",
+            "type": "int"
+          },
+          {
+            "name": "winner",
+            "description": "winner",
+            "in": "query",
+            "type": "varchar"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucesso!",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "total": {
+                  "type": "number",
+                  "example": 1
+                },
+                "movies": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "MOV_YEAR": {
+                        "type": "number",
+                        "example": 1980
+                      },
+                      "MOV_TITLE": {
+                        "type": "string",
+                        "example": "Can't Stop the Music"
+                      },
+                      "MOV_STUDIOS": {
+                        "type": "string",
+                        "example": "Associated Film Distribution"
+                      },
+                      "MOV_PRODUCERS": {
+                        "type": "string",
+                        "example": "Allan Carr"
+                      },
+                      "MOV_WINNER": {
+                        "type": "string",
+                        "example": "TRUE"
+                      }
+                    }
+                  }
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Problema no servidor."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "MOVIES"
+        ],
+        "summary": "Insert new movies.",
+        "description": "",
+        "parameters": [
+          {
+            "name": "json",
+            "in": "body",
+            "description": "new movies params",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "year": {
+                  "type": "number",
+                  "example": 2024
+                },
+                "title": {
+                  "type": "string",
+                  "example": "abc"
+                },
+                "studios": {
+                  "type": "string",
+                  "example": "pzo"
+                },
+                "producers": {
+                  "type": "string",
+                  "example": "rjh"
+                },
+                "winner": {
+                  "type": "string",
+                  "example": "yes"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucesso!",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "total": {
+                  "type": "number",
+                  "example": 1
+                },
+                "movies": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "MOV_YEAR": {
+                        "type": "number",
+                        "example": 1980
+                      },
+                      "MOV_TITLE": {
+                        "type": "string",
+                        "example": "Can't Stop the Music"
+                      },
+                      "MOV_STUDIOS": {
+                        "type": "string",
+                        "example": "Associated Film Distribution"
+                      },
+                      "MOV_PRODUCERS": {
+                        "type": "string",
+                        "example": "Allan Carr"
+                      },
+                      "MOV_WINNER": {
+                        "type": "string",
+                        "example": "TRUE"
+                      }
+                    }
+                  }
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "201": {
+            "description": "Criado"
+          },
+          "500": {
+            "description": "Problema no servidor."
+          }
+        }
+      }
+    },
+    "/movie/{mov_id}": {
+      "put": {
+        "tags": [
+          "MOVIES"
+        ],
+        "summary": "Update old movies.",
+        "description": "",
+        "parameters": [
+          {
+            "name": "mov_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "json",
+            "in": "body",
+            "description": "update movies params",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "year": {
+                  "type": "number",
+                  "example": 2024
+                },
+                "title": {
+                  "type": "string",
+                  "example": "abc"
+                },
+                "studios": {
+                  "type": "string",
+                  "example": "pzo"
+                },
+                "producers": {
+                  "type": "string",
+                  "example": "rjh"
+                },
+                "winner": {
+                  "type": "string",
+                  "example": "yes"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucesso!",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "total": {
+                  "type": "number",
+                  "example": 1
+                },
+                "movies": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "MOV_YEAR": {
+                        "type": "number",
+                        "example": 1980
+                      },
+                      "MOV_TITLE": {
+                        "type": "string",
+                        "example": "Can't Stop the Music"
+                      },
+                      "MOV_STUDIOS": {
+                        "type": "string",
+                        "example": "Associated Film Distribution"
+                      },
+                      "MOV_PRODUCERS": {
+                        "type": "string",
+                        "example": "Allan Carr"
+                      },
+                      "MOV_WINNER": {
+                        "type": "string",
+                        "example": "TRUE"
+                      }
+                    }
+                  }
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "201": {
+            "description": "Criado"
+          },
+          "500": {
+            "description": "Problema no servidor."
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "MOVIES"
+        ],
+        "summary": "Delete movies.",
+        "description": "",
+        "parameters": [
+          {
+            "name": "mov_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Movie ID (mov_id)",
+            "value": "207"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Sucesso!"
+          },
+          "500": {
+            "description": "Problema no servidor."
+          }
+        }
+      }
+    }
+  }
+}
