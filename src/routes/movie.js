@@ -61,16 +61,14 @@ module.exports = (app) => {
           "winner": "yes"
         }
       }
-      #swagger.responses[200] = { description: 'Sucesso!',
+      #swagger.responses[201] = { description: 'Criado!',
         schema: { 
-          total: 1,
-          movies: [    {
-            "MOV_YEAR": 1980,
-            "MOV_TITLE": "Can't Stop the Music",
-            "MOV_STUDIOS": "Associated Film Distribution",
-            "MOV_PRODUCERS": "Allan Carr",
-            "MOV_WINNER": "TRUE"
-          }]
+          "MOV_ID": 210,
+          "MOV_YEAR": 1980,
+          "MOV_TITLE": "Can't Stop the Music",
+          "MOV_STUDIOS": "Associated Film Distribution",
+          "MOV_PRODUCERS": "Allan Carr",
+          "MOV_WINNER": "TRUE"
         }
       }
       #swagger.responses[500] = { description: 'Problema no servidor.' }
@@ -93,16 +91,13 @@ module.exports = (app) => {
           "winner": "yes"
         }
       }
-      #swagger.responses[200] = { description: 'Sucesso!',
-        schema: { 
-          total: 1,
-          movies: [    {
-            "MOV_YEAR": 1980,
-            "MOV_TITLE": "Can't Stop the Music",
-            "MOV_STUDIOS": "Associated Film Distribution",
-            "MOV_PRODUCERS": "Allan Carr",
-            "MOV_WINNER": "TRUE"
-          }]
+      #swagger.responses[201] = { description: 'Editado!',
+        schema: {
+          "MOV_YEAR": 1980,
+          "MOV_TITLE": "Can't Stop the Music",
+          "MOV_STUDIOS": "Associated Film Distribution",
+          "MOV_PRODUCERS": "Allan Carr",
+          "MOV_WINNER": "TRUE"
         }
       }
       #swagger.responses[500] = { description: 'Problema no servidor.' }

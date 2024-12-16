@@ -211,51 +211,40 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "Sucesso!",
+          "201": {
+            "description": "Criado!",
             "schema": {
               "type": "object",
               "properties": {
-                "total": {
+                "MOV_ID": {
                   "type": "number",
-                  "example": 1
+                  "example": 210
                 },
-                "movies": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "MOV_YEAR": {
-                        "type": "number",
-                        "example": 1980
-                      },
-                      "MOV_TITLE": {
-                        "type": "string",
-                        "example": "Can't Stop the Music"
-                      },
-                      "MOV_STUDIOS": {
-                        "type": "string",
-                        "example": "Associated Film Distribution"
-                      },
-                      "MOV_PRODUCERS": {
-                        "type": "string",
-                        "example": "Allan Carr"
-                      },
-                      "MOV_WINNER": {
-                        "type": "string",
-                        "example": "TRUE"
-                      }
-                    }
-                  }
+                "MOV_YEAR": {
+                  "type": "number",
+                  "example": 1980
+                },
+                "MOV_TITLE": {
+                  "type": "string",
+                  "example": "Can't Stop the Music"
+                },
+                "MOV_STUDIOS": {
+                  "type": "string",
+                  "example": "Associated Film Distribution"
+                },
+                "MOV_PRODUCERS": {
+                  "type": "string",
+                  "example": "Allan Carr"
+                },
+                "MOV_WINNER": {
+                  "type": "string",
+                  "example": "TRUE"
                 }
               },
               "xml": {
                 "name": "main"
               }
             }
-          },
-          "201": {
-            "description": "Criado"
           },
           "500": {
             "description": "Problema no servidor."
@@ -309,51 +298,36 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "Sucesso!",
+          "201": {
+            "description": "Editado!",
             "schema": {
               "type": "object",
               "properties": {
-                "total": {
+                "MOV_YEAR": {
                   "type": "number",
-                  "example": 1
+                  "example": 1980
                 },
-                "movies": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "MOV_YEAR": {
-                        "type": "number",
-                        "example": 1980
-                      },
-                      "MOV_TITLE": {
-                        "type": "string",
-                        "example": "Can't Stop the Music"
-                      },
-                      "MOV_STUDIOS": {
-                        "type": "string",
-                        "example": "Associated Film Distribution"
-                      },
-                      "MOV_PRODUCERS": {
-                        "type": "string",
-                        "example": "Allan Carr"
-                      },
-                      "MOV_WINNER": {
-                        "type": "string",
-                        "example": "TRUE"
-                      }
-                    }
-                  }
+                "MOV_TITLE": {
+                  "type": "string",
+                  "example": "Can't Stop the Music"
+                },
+                "MOV_STUDIOS": {
+                  "type": "string",
+                  "example": "Associated Film Distribution"
+                },
+                "MOV_PRODUCERS": {
+                  "type": "string",
+                  "example": "Allan Carr"
+                },
+                "MOV_WINNER": {
+                  "type": "string",
+                  "example": "TRUE"
                 }
               },
               "xml": {
                 "name": "main"
               }
             }
-          },
-          "201": {
-            "description": "Criado"
           },
           "500": {
             "description": "Problema no servidor."

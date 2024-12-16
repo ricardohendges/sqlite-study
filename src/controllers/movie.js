@@ -34,8 +34,9 @@ async function putMovies (req, res) {
   try {
     const params = req.body
     params.mov_id = req.params.mov_id;
-    const result = await movieService.putMovies(params);
-    res.status(201).json(result);
+    await movieService.putMovies(params);
+    const result = await movieService.getMovies(params)
+    res.status(201).json(result[0]);
   } catch (err) {
     console.log(err);
     res.status(500).json(err.message);

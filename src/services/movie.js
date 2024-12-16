@@ -10,7 +10,7 @@ SELECT MOV_ID,
   FROM T_MOVIES `;
 
 async function getMovies (params) {
-  const {limit, offset, year, winner} = params;
+  const {limit, offset, year, winner, mov_id} = params;
   const paramsList = [];
   let sqlFilter = '';
   if (year) {
@@ -20,6 +20,10 @@ async function getMovies (params) {
   if (winner) {
     sqlFilter = (sqlFilter ? sqlFilter + ' AND ' : sqlFilter + ' WHERE ')  + ` MOV_WINNER = (?) `;
     paramsList.push(winner);
+  }
+  if (mov_id) {
+    sqlFilter = (sqlFilter ? sqlFilter + ' AND ' : sqlFilter + ' WHERE ')  + ` MOV_ID = (?) `;
+    paramsList.push(mov_id);
   }
   if (limit && offset) {
     sqlFilter += ` LIMIT (?) OFFSET (?) `;
@@ -36,17 +40,22 @@ async function getMovies (params) {
   });
 }
 
+const sql_insertMovie = `
+  INSERT INTO T_MOVIES (MOV_YEAR, MOV_TITLE, MOV_STUDIOS, MOV_PRODUCERS, MOV_WINNER) 
+                VALUES (?, ?, ?, ?, ?) RETURNING * `;
+
 async function postMovies (params) {
-  const {year, title, studios, producers, winner} = params;
+  const { year, title, studios, producers, winner } = params;
   return new Promise((resolve, reject) => {
-    const stmt_Movies = my_sqlite.db.prepare(`
-      INSERT INTO T_MOVIES (MOV_YEAR, MOV_TITLE, MOV_STUDIOS, MOV_PRODUCERS, MOV_WINNER) 
-                    VALUES (?, ?, ?, ?, ?)`);
-    stmt_Movies.run(+year, title, studios, producers, winner == 'yes' ? 'TRUE' : 'FALSE');
-    stmt_Movies.finalize((err) => {
-    if (err) reject (err)
-    else resolve(params)
-    });
+    my_sqlite.db.run(sql_insertMovie, [+year, title, studios, producers, winner == 'yes' ? 'TRUE' : 'FALSE'], 
+      function(err, row) {
+        if (err) reject (err)
+        else {
+          getMovies({ mov_id: this.lastID })
+            .then(res => resolve(res[0]))
+            .catch(err => reject (err))
+        }
+      });
   });
 }
 
@@ -85,7 +94,7 @@ async function putMovies (params) {
   paramsList.push(params.mov_id);
 
   return new Promise((resolve, reject) => {
-    my_sqlite.db.all(sql, paramsList, (err, row) => {
+    my_sqlite.db.run(sql, paramsList, (err, row) => {
       if (err) reject (err)
       else resolve(row)
     });
