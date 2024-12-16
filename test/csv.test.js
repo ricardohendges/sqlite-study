@@ -2,7 +2,7 @@ const csvReader = require('../src/utils/csv-reader')
  
 describe('csv-reader', () => {
   test('01 | Ler CSV (Correto)', async () => {
-    const result = await csvReader.readCsv('./src/db/db-csv-file/Movielist.csv');
+    const result = await csvReader.readCsv('./src/db/db-csv-file/mock.csv');
     expect(result.length-1).toEqual(206);
   });
   test('02 | Ler CSV (Errado)', async () => {

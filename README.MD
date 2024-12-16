@@ -68,6 +68,11 @@ http://localhost:9000/award
 
 ```
 
+> 5. Testar aplicação:
+```
+npm run test
+```
+
 # Estrutura do Projeto
 
 ```
