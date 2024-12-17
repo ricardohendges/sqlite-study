@@ -12,4 +12,12 @@ describe('csv-reader', () => {
       expect(err).toEqual('Cabecalho incorreto!');
     }
   });
+  test('03 | Ler CSV Original', async () => {
+    try {
+      const result = await csvReader.readCsv('./src/db/db-csv-file/Movielist.csv');
+      expect(result.length-1).toEqual(206);
+    } catch (err){
+      expect(err).toEqual('Cabecalho incorreto!');
+    }
+  });
 });
