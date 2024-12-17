@@ -39,26 +39,31 @@ async function getAward (req, res) {
     })
     const menorIntervalo = Math.min(...intervalos);
     const maiorIntervalo = Math.max(...intervalos);
-    
-    let menorProducer = producers.filter(p => p.intervals.some(i => i.intervalo === menorIntervalo))
+    let menorProducer = [];
+    producers.filter(p => p.intervals.some(i => i.intervalo === menorIntervalo))
       .map(el => {
-        const formatedEl = {}
-        formatedEl.producer = el.producer
-        formatedEl.interval = menorIntervalo
-        let intervalo = el.intervals.find(i => i.intervalo == menorIntervalo);
-        formatedEl.previousWin = intervalo.inicio
-        formatedEl.followingWin = intervalo.fim
-        return formatedEl
+        el.intervals.filter(i => i.intervalo == menorIntervalo)
+          .map(i => {
+            const formatedEl = {}
+            formatedEl.producer = el.producer;
+            formatedEl.interval = menorIntervalo;
+            formatedEl.previousWin = i.inicio;
+            formatedEl.followingWin = i.fim;
+            menorProducer.push(formatedEl);
+        })
       });
-    let maiorProducer = producers.filter(p => p.intervals.some(i => i.intervalo === maiorIntervalo))
+    let maiorProducer = [];
+    producers.filter(p => p.intervals.some(i => i.intervalo === maiorIntervalo))
       .map(el => {
-        const formatedEl = {}
-        formatedEl.producer = el.producer
-        formatedEl.interval = maiorIntervalo
-        let intervalo = el.intervals.find(i => i.intervalo == maiorIntervalo);
-        formatedEl.previousWin = intervalo.inicio
-        formatedEl.followingWin = intervalo.fim
-        return formatedEl
+        el.intervals.filter(i => i.intervalo == maiorIntervalo)
+          .map(i => {
+            const formatedEl = {};
+            formatedEl.producer = el.producer;
+            formatedEl.interval = maiorIntervalo;
+            formatedEl.previousWin = i.inicio;
+            formatedEl.followingWin = i.fim;
+            maiorProducer.push(formatedEl);
+          })
       });
     res.status(200).json({min: menorProducer, max: maiorProducer});
   } catch (err) {
